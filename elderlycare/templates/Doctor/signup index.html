@@ -1,0 +1,293 @@
+{#<!doctype html>#}
+{#<html lang="en">#}
+{#  <head>#}
+{#  	<title>Sign Up 09</title>#}
+{#    <meta charset="utf-8">#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">#}
+{##}
+{#	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">#}
+{##}
+{#	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">#}
+{#	#}
+{#	<link rel="stylesheet" href="/static/signup/css/style.css">#}
+{##}
+{#	</head>#}
+{#	<body class="img" style="background-image: url(/static/signup/images/bg.jpg);">#}
+{##}
+{#	<section class="ftco-section">#}
+{#		<div class="container">#}
+{#			<div class="row justify-content-center">#}
+{#				<div class="col-md-6 text-center mb-5">#}
+{#					<h2 class="heading-section">Register here</h2>#}
+{#				</div>#}
+{#			</div>#}
+{#			<div class="row justify-content-center">#}
+{#				<div class="col-md-7 col-lg-5">#}
+{#					<div class="login-wrap">#}
+{#		      	<h3 class="text-center mb-4">Create Your Account</h3>#}
+{#						<form action="/my_project/doc_registration_post/" method="post" enctype="multipart/form-data"  class="signup-form">#}
+{#                              {% csrf_token %}#}
+{#		      		<div class="form-group mb-3">#}
+{#		      			<label class="label" for="name">Full Name</label>#}
+{#		      			<input type="text" class="form-control" name="textfield" placeholder="Enter your name">#}
+{#		      			<span class="icon fa fa-user-o"></span>#}
+{#		      		</div>#}
+{#		      		<div class="form-group mb-3">#}
+{#		      			<label class="label" for="email">Email Address</label>#}
+{#		      			<input type="text" class="form-control" name="textfield7" placeholder="Enter your email">#}
+{#		      			<span class="icon fa fa-paper-plane-o"></span>#}
+{#		      		</div>#}
+{#                            <div class="form-group mb-3">#}
+{#		      			<label class="label" for="name">Gender</label><br>#}
+{#		      			<input type="radio"  value="Male" name="RadioGroup1"  placeholder="John Doe">Male<br>#}
+{#		      			<input type="radio"  value="Female" name="RadioGroup1" placeholder="John Doe">Female<br>#}
+{#	      			<input type="radio"  value="Other" name="RadioGroup1" placeholder="John Doe">Other#}
+{#		      		</div>#}
+{#                            <div class="form-group mb-3">#}
+{#		      			<label class="label" for="name">Phone</label>#}
+{#		      			<input type="text" class="form-control" name="textfield6" >#}
+{#		      			<span class="icon fa fa-user-o"></span>#}
+{#		      		</div>#}
+{#                            <div class="form-group mb-3">#}
+{#		      			<label class="label" for="name">DOB</label>#}
+{#		      			<input type="date" class="form-control" name="textfield2" >#}
+{#		      			<span class="icon fa fa-user-o"></span>#}
+{#		      		</div>#}
+{#                            <div class="form-group mb-3">#}
+{#		      			<label class="label" for="name">Photo</label>#}
+{#		      			<input type="file" class="form-control" name="textfield19" >#}
+{#		      			<span class="icon fa fa-user-o"></span>#}
+{#		      		</div>#}
+{#                            <div class="form-group mb-3">#}
+{#		      			<label class="label" for="name">Place</label>#}
+{#		      			<input type="text" class="form-control" name="textfield3" >#}
+{#		      			<span class="icon fa fa-user-o"></span>#}
+{#		      		</div>#}
+{#                            <div class="form-group mb-3">#}
+{#		      			<label class="label" for="name">Post</label>#}
+{#		      			<input type="text" class="form-control" name="textfield4" >#}
+{#		      			<span class="icon fa fa-user-o"></span>#}
+{#		      		</div>#}
+{#                            <div class="form-group mb-3">#}
+{#		      			<label class="label" for="name">Country</label>#}
+{#		      			<input type="text" class="form-control" name="textfield5" >#}
+{#		      			<span class="icon fa fa-user-o"></span>#}
+{#		      		</div>#}
+{##}
+{#                            <div class="form-group mb-3">#}
+{#		      			<label class="label" for="name">Qualification</label>#}
+{#		      			<input type="text" class="form-control" name="textfield8" >#}
+{#		      			<span class="icon fa fa-user-o"></span>#}
+{#		      		</div>#}
+{#                              <div class="form-group mb-3">#}
+{#		      			<label class="label" for="name">Experience</label>#}
+{#		      			<input type="text" class="form-control" name="textfield13" >#}
+{#		      			<span class="icon fa fa-user-o"></span>#}
+{#		      		</div>#}
+{#                              <div class="form-group mb-3">#}
+{#		      			<label class="label" for="name">Specialization</label>#}
+{#		      			<input type="text" class="form-control" name="textfield9" >#}
+{#		      			<span class="icon fa fa-user-o"></span>#}
+{#		      		</div>#}
+{##}
+{##}
+{#	            <div class="form-group mb-3">#}
+{#	            	<label class="label" for="password">Password</label>#}
+{#	              <input id="password" type="password" class="form-control" name="textfield10" placeholder="Password">#}
+{#	              <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>#}
+{#	              <span class="icon fa fa-lock"></span>#}
+{#	            </div>#}
+{#	            <div class="form-group mb-3">#}
+{#	            	<label class="label" for="password"> Confirm Password</label>#}
+{#	              <input id="password-confirm" type="password" class="form-control" name="textfield11" placeholder="Password">#}
+{#	              <span toggle="#password-confirm" class="fa fa-fw fa-eye field-icon toggle-password"></span>#}
+{#	              <span class="icon fa fa-lock"></span>#}
+{#	            </div>#}
+{#	            <div class="form-group">#}
+{#	            	<button type="submit" class="form-control btn btn-primary submit px-3">Sign Up</button>#}
+{#	            </div>#}
+{#	          </form>#}
+{#	          <p>I'm already a member! <a href="/my_project/login_get/">Sign In</a></p>#}
+{#	        </div>#}
+{#				</div>#}
+{#			</div>#}
+{#		</div>#}
+{#	</section>#}
+{##}
+{#	<script src="/static/signup/js/jquery.min.js"></script>#}
+{#  <script src="/static/signup/js/popper.js"></script>#}
+{#  <script src="/static/signup/js/bootstrap.min.js"></script>#}
+{#  <script src="/static/signup/js/main.js"></script>#}
+{##}
+{#	</body>#}
+{#</html>#}
+{##}
+
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Doctor Registration</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <style>
+    body {
+      background: url('/static/signup/images/doctor-bg.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Lato', sans-serif;
+    }
+
+    .card {
+      background-color: rgba(255, 255, 255, 0.95);
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    .form-control, .btn {
+      border-radius: 8px;
+    }
+
+    .form-section {
+      padding: 50px 30px;
+    }
+
+    .heading-section {
+      color: #007bff;
+      font-weight: 700;
+    }
+
+    .form-label {
+      font-weight: 600;
+    }
+
+    .toggle-password {
+      cursor: pointer;
+      position: absolute;
+      right: 15px;
+      top: 35px;
+    }
+  </style>
+</head>
+<body>
+
+<section class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+      <div class="card">
+        <div class="card-body form-section">
+          <h2 class="text-center mb-4 heading-section">Doctor Registration</h2>
+          <form action="/my_project/doc_registration_post/" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label">Full Name</label>
+                <input type="text" class="form-control" required name="textfield" placeholder="Enter your name">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Email Address</label>
+                <input type="email" class="form-control" name="textfield7" required placeholder="Enter your email">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Gender</label><br>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="RadioGroup1" value="Male">
+                  <label class="form-check-label">Male</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="RadioGroup1" value="Female">
+                  <label class="form-check-label">Female</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="RadioGroup1" value="Other">
+                  <label class="form-check-label">Other</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Phone</label>
+                <input type="text" class="form-control" required name="textfield6">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Date of Birth</label>
+                <input type="date" class="form-control" required name="textfield2">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Upload Photo</label>
+                <input type="file" class="form-control" required name="textfield19">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Place</label>
+                <input type="text" class="form-control" required name="textfield3">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Post</label>
+                <input type="text" class="form-control" required name="textfield4">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Country</label>
+                <input type="text" class="form-control" required name="textfield5">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Qualification</label>
+                <input type="text" class="form-control" required name="textfield8">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Experience</label>
+                <input type="text" class="form-control" required name="textfield13">
+              </div>
+              <div class="col-md-12">
+                <label class="form-label">Specialization</label>
+                <input type="text" class="form-control" required name="textfield9">
+              </div>
+              <div class="col-md-6 position-relative">
+                <label class="form-label">Password</label>
+                <input id="password" type="password" class="form-control" required name="textfield10" placeholder="Password">
+                <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+              </div>
+              <div class="col-md-6 position-relative">
+                <label class="form-label">Confirm Password</label>
+                <input id="password-confirm" type="password" class="form-control" required name="textfield11" placeholder="Confirm Password">
+                <span toggle="#password-confirm" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+              </div>
+              <div class="col-md-12 mt-4">
+                <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+              </div>
+              <div class="col-md-12 text-center mt-3">
+                <p>Already registered? <a href="/my_project/login_get/">Login here</a></p>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JS Scripts -->
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  // Toggle password visibility
+  $(".toggle-password").click(function () {
+    $(this).toggleClass("fa-eye fa-eye-slash");
+    let input = $($(this).attr("toggle"));
+    input.attr("type", input.attr("type") === "password" ? "text" : "password");
+  });
+</script>
+
+</body>
+</html>
+
+
+

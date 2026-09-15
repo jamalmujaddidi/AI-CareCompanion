@@ -1,0 +1,257 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />#}
+{#<title>Untitled Document</title>#}
+{#</head>#}
+{##}
+{#<body>#}
+{#{% extends 'Doctor/home.html' %}#}
+{##}
+{#{% block body %}#}
+{#<form id="form1" name="form1" method="post"enctype="multipart/form-data" action="/my_project/doc_edit_profile_post/">#}
+{#{% csrf_token %}#}
+{#  <table class="table table-bordered" style="width: 700px;">#}
+{#    <tr>#}
+{#      <td>Name</td>#}
+{#      <td><label for="textfield"></label>#}
+{#      <input type="text" class="form-control" requird value="{{ data.Doctor_name }}" name="textfield" id="textfield" /></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#     <td>Gender</td>#}
+{#      <td><p>#}
+{#        <label>#}
+{#          <input type="radio"class="form-control" name="RadioGroup1" {% if data.gender == "Male" %}checked{% endif %} value="Male" id="RadioGroup1_0" />#}
+{#          Male</label>#}
+{#        <br />#}
+{#        <label>#}
+{#          <input type="radio" class="form-control" name="RadioGroup1" {% if data.gender == "Female" %}checked{% endif %} value="Female" id="RadioGroup1_1" />#}
+{#          Female</label>#}
+{#        <br />#}
+{#        <label>#}
+{#          <input type="radio"class="form-control" name="RadioGroup1" {% if data.gender == "Other" %}checked{% endif %} value="Other" id="RadioGroup1_2" />#}
+{#          Other</label>#}
+{#        <br />#}
+{#      </p></td>#}
+{#    </tr>#}
+{#      <tr>#}
+{#      <td>Place</td>#}
+{#      <td><label for="textfield3"></label>#}
+{#      <input type="text" class="form-control"required name="textfield3" value="{{ data.place }}" id="textfield3" /></td>#}
+{#      </tr>#}
+{#  <tr>#}
+{#           <td>Post</td>#}
+{#      <td><label for="textfield4"></label>#}
+{#      <input type="text" class="form-control"required name="textfield4"value="{{ data.post }}" id="textfield4" /></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td>Country</td>#}
+{#      <td><label for="textfield5"></label>#}
+{#      <input type="text" class="form-control"required name="textfield5"value="{{ data.country }}" id="textfield5" /></td>#}
+{#    </tr>#}
+{#  <tr>#}
+{#      <td>Photo</td>#}
+{#      <td><img src="{{ data.photo }}" height="100px" width="100px"><br>#}
+{#      <input type="file" class="form-control" required name="textfield19" id="textfield19" /></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td>Phone</td>#}
+{#      <td><label for="textfield6"></label>#}
+{#      <input type="text" class="form-control"required name="textfield6"value="{{ data.phone }}" id="textfield6" /></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td>Email</td>#}
+{#      <td><label for="textfield7"></label>#}
+{#      <input type="text" class="form-control" required name="textfield7"value="{{ data.Email }}" id="textfield7" /></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td>DOB</td>#}
+{#      <td><label for="textfield2"></label>#}
+{#      <input type="date" name="textfield2 "value="{{ data.DOB|date:'Y-m-d' }}"  id="textfield2" /></td>#}
+{#    </tr>#}
+{#   <tr>#}
+{#      <td>Specialization</td>#}
+{#      <td><label for="textfield9"></label>#}
+{#      <input type="text" class="form-control" required name="textfield9" value="{{ data.specialization }}"  id="textfield9" /></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td>Qualification</td>#}
+{#      <td><label for="textfield8"></label>#}
+{#      <input type="text" class="form-control" required name="textfield8" value="{{ data.qualification }}" id="textfield8" /></td>#}
+{#    </tr>#}
+{#  <tr>#}
+{#      <td>Experience</td>#}
+{#      <td><label for="textfield8"></label>#}
+{#      <input type="text" class="form-control" required name="textfield18" value="{{ data.Experience }}" id="textfield8" /></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td>&nbsp;</td>#}
+{#      <td><input type="submit" class="btn btn-success" name="button " id="button" value="Edit" /></td>#}
+{#    </tr>#}
+{#  </table>#}
+{#</form>#}
+{#{% endblock %}#}
+{#</body>#}
+{#</html>#}
+
+
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Edit Profile</title>
+<style>
+  body {
+    background: #f0f2f5;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  .form-wrapper {
+    max-width: 720px;
+    background: #fff;
+    margin: 40px auto;
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  }
+  h2 {
+    text-align: center;
+    color: #343a40;
+    margin-bottom: 30px;
+    font-weight: 700;
+    font-size: 2rem;
+  }
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 15px;
+  }
+  table td, table th {
+    padding: 10px 15px;
+    vertical-align: middle;
+  }
+  table th {
+    width: 30%;
+    text-align: left;
+    font-weight: 600;
+    color: #495057;
+    font-size: 1.1rem;
+  }
+  input[type="text"],
+  input[type="date"],
+  input[type="file"],
+  input[type="radio"] {
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid #ced4da;
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
+  input[type="file"] {
+    padding: 3px 5px;
+  }
+  .form-control.radio-group {
+    width: auto;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+  img {
+    border-radius: 6px;
+    margin-bottom: 10px;
+  }
+  input[type="submit"] {
+    background-color: #198754;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+  }
+  input[type="submit"]:hover {
+    background-color: #157347;
+  }
+</style>
+</head>
+
+<body>
+{% extends 'Doctor/home.html' %}
+
+{% block body %}
+<div class="form-wrapper">
+  <h2>Edit Profile</h2>
+  <form id="form1" name="form1" method="post" enctype="multipart/form-data" action="/my_project/doc_edit_profile_post/">
+    {% csrf_token %}
+    <table>
+      <tr>
+        <th>Name</th>
+        <td><input type="text" class="form-control" required value="{{ data.Doctor_name }}" name="textfield" id="textfield" /></td>
+      </tr>
+      <tr>
+        <th>Gender</th>
+        <td>
+          <label><input type="radio" class="form-control radio-group" name="RadioGroup1" {% if data.gender == "Male" %}checked{% endif %} value="Male" /> Male</label>
+          <label><input type="radio" class="form-control radio-group" name="RadioGroup1" {% if data.gender == "Female" %}checked{% endif %} value="Female" /> Female</label>
+          <label><input type="radio" class="form-control radio-group" name="RadioGroup1" {% if data.gender == "Other" %}checked{% endif %} value="Other" /> Other</label>
+        </td>
+      </tr>
+      <tr>
+        <th>Place</th>
+        <td><input type="text" class="form-control" required name="textfield3" value="{{ data.place }}" id="textfield3" /></td>
+      </tr>
+      <tr>
+        <th>Post</th>
+        <td><input type="text" class="form-control" required name="textfield4" value="{{ data.post }}" id="textfield4" /></td>
+      </tr>
+      <tr>
+        <th>Country</th>
+        <td><input type="text" class="form-control" required name="textfield5" value="{{ data.country }}" id="textfield5" /></td>
+      </tr>
+      <tr>
+        <th>Photo</th>
+        <td>
+          <img src="{{ data.photo }}" height="100" width="100" alt="Doctor Photo" /><br />
+          <input type="file" class="form-control" name="textfield19" id="textfield19" />
+        </td>
+      </tr>
+      <tr>
+        <th>Phone</th>
+        <td><input type="text" class="form-control" required name="textfield6" value="{{ data.phone }}" id="textfield6" /></td>
+      </tr>
+      <tr>
+        <th>Email</th>
+        <td><input type="text" class="form-control" required name="textfield7" value="{{ data.Email }}" id="textfield7" /></td>
+      </tr>
+      <tr>
+        <th>DOB</th>
+        <td><input type="date" name="textfield2" value="{{ data.DOB|date:'Y-m-d' }}" id="textfield2" /></td>
+      </tr>
+      <tr>
+        <th>Specialization</th>
+        <td><input type="text" class="form-control" required name="textfield9" value="{{ data.specialization }}" id="textfield9" /></td>
+      </tr>
+      <tr>
+        <th>Qualification</th>
+        <td><input type="text" class="form-control" required name="textfield8" value="{{ data.qualification }}" id="textfield8" /></td>
+      </tr>
+      <tr>
+        <th>Experience</th>
+        <td><input type="text" class="form-control" required name="textfield18" value="{{ data.Experience }}" id="textfield18" /></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><input type="submit" class="btn btn-success" name="button" id="button" value="Edit" /></td>
+      </tr>
+    </table>
+  </form>
+</div>
+{% endblock %}
+</body>
+</html>

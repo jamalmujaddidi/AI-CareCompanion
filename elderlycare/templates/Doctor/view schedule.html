@@ -1,0 +1,148 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />#}
+{#<title>Chedule</title>#}
+{#</head>#}
+{##}
+{#<body>#}
+{#{% extends 'Doctor/home.html' %}#}
+{##}
+{#{% block body %}#}
+{#<form id="form1" name="form1" method="post" action="/my_project/doc_view_schedule_post/#ec">#}
+{#{% csrf_token %}#}
+{#  <table class="table table-bordered" style="width: 700px;">#}
+{#    <tr>#}
+{#      <th>From</th>#}
+{#      <td><label for="textfield"></label>#}
+{#      <input type="date" class="form-control"required name="textfield" id="textfield" /></td>#}
+{#      <th>To</th>#}
+{#      <td><label for="textfield2"></label>#}
+{#      <input type="date" class="form-control"required name="textfield2" id="textfield2" /></td>#}
+{#      <td><input type="submit" class="btn btn-success" name="button" id="button" value="Search" /></td>#}
+{#    </tr>#}
+{#  </table>#}
+{#  <table class="table table-bordered" style="width: 700px;">#}
+{#    <tr>#}
+{#      <th>S/No</th>#}
+{##}
+{#      <th>Date</th>#}
+{#        <th>From time</th>#}
+{#      <th>To time</th>#}
+{#      <td>Action</td>#}
+{#      <td>Doctor</td>#}
+{#      <th colspan="2"> Action  </th>#}
+{#    </tr>#}
+{#      {% for i in data %}#}
+{#    <tr>#}
+{#      <td>&nbsp;{{ forloop.counter }}</td>#}
+{#              <td>{{ i.Date }}</td>#}
+{##}
+{#      <td>&nbsp;{{ i.From_time}}</td>#}
+{#      <td>{{ i.To_time }}</td>#}
+{#      <td><a href="/my_project/doc_edit_scedule_get/{{ i.id }}" class="btn btn-info">Edit</a></td>#}
+{#      <td><a href="/my_project/delete_schedule_get/{{ i.id }}" onclick="return confirm(#}
+{#        'Do You Really Want To Delete It ?'#}
+{#      )"class="btn btn-danger">Delete</a></td>#}
+{#        <td><a href="/my_project/doc_view_appointment_get/{{ i.id }}#ec" class="btn btn-outline-primary">Appointment</a></td>#}
+{#    </tr>#}
+{#      {% endfor %}#}
+{#  </table>#}
+{#  #}
+{#</form>#}
+{#{% endblock %}#}
+{#</body>#}
+{#</html>#}
+
+
+
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Schedule</title>
+
+  <!-- Bootstrap (skip this if already in base.html) -->
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+
+  <style>
+    .form-wrapper {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 30px;
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(0, 123, 255, 0.15);
+    }
+
+    .form-wrapper h2 {
+      text-align: center;
+      color: #0d6efd;
+      margin-bottom: 25px;
+    }
+
+    .btn {
+      border-radius: 8px;
+    }
+
+    .table td,
+    .table th {
+      vertical-align: middle;
+    }
+
+    .date-filter-row td {
+      padding-bottom: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  {% extends 'Doctor/home.html' %}
+
+  {% block body %}
+  <div class="form-wrapper" id="ec">
+    <h2>View Schedule</h2>
+    <form id="form1" name="form1" method="post" action="/my_project/doc_view_schedule_post/#ec">
+      {% csrf_token %}
+      <table class="table table-borderless date-filter-row">
+        <tr>
+          <th style="width: 15%;">From</th>
+          <td><input type="date" class="form-control" name="textfield" required /></td>
+          <th style="width: 15%;">To</th>
+          <td><input type="date" class="form-control" name="textfield2" required /></td>
+          <td><input type="submit" class="btn btn-success" value="Search" /></td>
+        </tr>
+      </table>
+
+      <table class="table table-bordered">
+        <tr class="table-primary text-center">
+          <th>S/No</th>
+          <th>Date</th>
+          <th>From Time</th>
+          <th>To Time</th>
+          <th colspan="3">Action</th>
+        </tr>
+        {% for i in data %}
+        <tr class="text-center">
+          <td>{{ forloop.counter }}</td>
+          <td>{{ i.Date }}</td>
+          <td>{{ i.From_time }}</td>
+          <td>{{ i.To_time }}</td>
+          <td><a href="/my_project/doc_edit_scedule_get/{{ i.id }}#ec" class="btn btn-info">Edit</a></td>
+          <td><a href="/my_project/delete_schedule_get/{{ i.id }}" onclick="return confirm('Do You Really Want To Delete It?')" class="btn btn-danger">Delete</a></td>
+          <td><a href="/my_project/doc_view_appointment_get/{{ i.id }}#ec" class="btn btn-outline-primary">Appointment</a></td>
+        </tr>
+        {% endfor %}
+      </table>
+    </form>
+  </div>
+  {% endblock %}
+</body>
+
+</html>

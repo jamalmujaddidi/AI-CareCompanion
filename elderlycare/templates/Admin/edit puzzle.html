@@ -1,0 +1,474 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+{% extends 'Admin/home.html' %}
+
+{% block body %}
+<form id="form1" name="form1" method="post" enctype="multipart/form-data" action="/my_project/edit_puzzle_post/">
+{% csrf_token %}
+    <table class="table table-bordered" style="width: 700px;">
+    <tr><input type="hidden" name="id" value="{{ data.id }}">
+      <th>Photo</th>
+
+      <td><img src="{{ data.Photo }}" height="100px" width="100px"><br>
+          <input type="file"class="form-control"  name="textfield" id="textfield" /></td>
+    </tr>
+    <tr>
+      <th>Title</th>
+      <td><input type="text" class="form-control"required value="{{ data.Title }}" name="textfield2" id="textfield" /></td>
+    </tr>
+
+        <tr>
+          <th>Level</th>
+          <td><select name="level"class="form-select">
+              <option value="easy" {% if data.level == "easy" %}selected{% endif %}>Easy</option>
+              <option value="medium" {% if data.level == "medium" %}selected{% endif %}>Medium</option>
+              <option value="hard"{% if data.level == "hard" %}selected{% endif %}>Hard</option>
+
+
+          </select></td>
+      </tr>
+    <tr>
+
+      <td>&nbsp;</td>
+      <td><input type="submit"class="btn btn-success" name="button" id="button" value="Edit" /></td>
+    </tr>
+  </table>
+</form>
+{% endblock %}
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+{##}
+{##}
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1.0">#}
+{#    <title>Puzzle Editor | Elderly Care</title>#}
+{#    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">#}
+{#    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">#}
+{#    <style>#}
+{#        :root {#}
+{#            --primary: #4361ee;#}
+{#            --secondary: #3f37c9;#}
+{#            --success: #4cc9f0;#}
+{#            --light: #f8f9fa;#}
+{#            --dark: #212529;#}
+{#            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);#}
+{#        }#}
+{##}
+{#        body {#}
+{#            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);#}
+{#            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;#}
+{#            min-height: 100vh;#}
+{#            padding: 20px;#}
+{#            display: flex;#}
+{#            align-items: center;#}
+{#            justify-content: center;#}
+{#            margin: 0;#}
+{#        }#}
+{##}
+{#        .edit-container {#}
+{#            max-width: 650px; /* Reduced width for better fit */#}
+{#            width: 100%;#}
+{#            background: white;#}
+{#            border-radius: 20px;#}
+{#            box-shadow: var(--card-shadow);#}
+{#            overflow: hidden;#}
+{#            animation: fadeIn 0.6s ease-out;#}
+{#        }#}
+{##}
+{#        @keyframes fadeIn {#}
+{#            from { opacity: 0; transform: translateY(20px); }#}
+{#            to { opacity: 1; transform: translateY(0); }#}
+{#        }#}
+{##}
+{#        .edit-header {#}
+{#            background: linear-gradient(120deg, var(--primary), var(--secondary));#}
+{#            color: white;#}
+{#            padding: 20px 25px; /* Reduced padding */#}
+{#            text-align: center;#}
+{#        }#}
+{##}
+{#        .edit-header h2 {#}
+{#            font-weight: 700;#}
+{#            margin: 0;#}
+{#            display: flex;#}
+{#            align-items: center;#}
+{#            justify-content: center;#}
+{#            gap: 12px;#}
+{#            font-size: 1.6rem; /* Smaller font size */#}
+{#        }#}
+{##}
+{#        .edit-body {#}
+{#            padding: 25px; /* Reduced padding */#}
+{#        }#}
+{##}
+{#        .form-card {#}
+{#            background: var(--light);#}
+{#            border-radius: 15px;#}
+{#            padding: 20px; /* Reduced padding */#}
+{#            margin-bottom: 20px; /* Reduced margin */#}
+{#            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);#}
+{#            border: 1px solid rgba(67, 97, 238, 0.1);#}
+{#        }#}
+{##}
+{#        .form-group {#}
+{#            margin-bottom: 20px; /* Reduced margin */#}
+{#        }#}
+{##}
+{#        .form-group label {#}
+{#            font-weight: 600;#}
+{#            color: var(--secondary);#}
+{#            margin-bottom: 10px;#}
+{#            display: flex;#}
+{#            align-items: center;#}
+{#            gap: 8px;#}
+{#            font-size: 1rem; /* Smaller font size */#}
+{#        }#}
+{##}
+{#        .form-control, .form-select {#}
+{#            border: 2px solid #e2e8f0;#}
+{#            border-radius: 12px;#}
+{#            padding: 12px 16px; /* Reduced padding */#}
+{#            font-size: 15px; /* Smaller font size */#}
+{#            transition: all 0.3s ease;#}
+{#        }#}
+{##}
+{#        .form-control:focus, .form-select:focus {#}
+{#            border-color: var(--primary);#}
+{#            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);#}
+{#        }#}
+{##}
+{#        .image-section {#}
+{#            display: flex;#}
+{#            flex-direction: column;#}
+{#            align-items: center;#}
+{#            gap: 15px;#}
+{#            margin-top: 10px;#}
+{#        }#}
+{##}
+{#        .image-preview {#}
+{#            width: 160px; /* Reduced size */#}
+{#            height: 160px; /* Reduced size */#}
+{#            border-radius: 12px;#}
+{#            background: #f1f5ff;#}
+{#            display: flex;#}
+{#            align-items: center;#}
+{#            justify-content: center;#}
+{#            border: 3px dashed #cbd5e0;#}
+{#            overflow: hidden;#}
+{#        }#}
+{##}
+{#        .image-preview img {#}
+{#            max-width: 100%;#}
+{#            max-height: 100%;#}
+{#            object-fit: cover;#}
+{#            transition: all 0.3s ease;#}
+{#        }#}
+{##}
+{#        .file-upload {#}
+{#            position: relative;#}
+{#            display: inline-block;#}
+{#            cursor: pointer;#}
+{#            background: var(--primary);#}
+{#            color: white;#}
+{#            padding: 10px 20px; /* Reduced padding */#}
+{#            border-radius: 50px;#}
+{#            font-weight: 600;#}
+{#            transition: all 0.3s ease;#}
+{#            box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);#}
+{#            font-size: 0.95rem; /* Smaller font size */#}
+{#        }#}
+{##}
+{#        .file-upload:hover {#}
+{#            background: var(--secondary);#}
+{#            transform: translateY(-2px);#}
+{#            box-shadow: 0 6px 20px rgba(67, 97, 238, 0.4);#}
+{#        }#}
+{##}
+{#        .file-upload input {#}
+{#            position: absolute;#}
+{#            left: 0;#}
+{#            top: 0;#}
+{#            opacity: 0;#}
+{#            cursor: pointer;#}
+{#            width: 100%;#}
+{#            height: 100%;#}
+{#        }#}
+{##}
+{#        .btn-submit {#}
+{#            background: linear-gradient(120deg, #4cc9f0, var(--primary));#}
+{#            color: white;#}
+{#            border: none;#}
+{#            padding: 14px 30px; /* Reduced padding */#}
+{#            font-size: 17px; /* Smaller font size */#}
+{#            font-weight: 700;#}
+{#            border-radius: 50px;#}
+{#            display: block;#}
+{#            margin: 15px auto 0; /* Adjusted margin */#}
+{#            width: 100%;#}
+{#            max-width: 280px; /* Reduced width */#}
+{#            transition: all 0.3s ease;#}
+{#            box-shadow: 0 6px 20px rgba(76, 201, 240, 0.4);#}
+{#        }#}
+{##}
+{#        .btn-submit:hover {#}
+{#            transform: translateY(-3px);#}
+{#            box-shadow: 0 8px 25px rgba(76, 201, 240, 0.6);#}
+{#        }#}
+{##}
+{#        .btn-submit:active {#}
+{#            transform: translateY(0);#}
+{#        }#}
+{##}
+{#        /* Enhanced level badges */#}
+{#        .level-badge {#}
+{#            display: inline-block;#}
+{#            padding: 8px 20px;#}
+{#            border-radius: 50px;#}
+{#            font-weight: 700;#}
+{#            font-size: 14px;#}
+{#            text-transform: uppercase;#}
+{#            letter-spacing: 1px;#}
+{#            box-shadow: 0 4px 8px rgba(0,0,0,0.1);#}
+{#            transition: all 0.3s ease;#}
+{#        }#}
+{##}
+{#        .level-easy {#}
+{#            background: linear-gradient(to right, #4CAF50, #8BC34A);#}
+{#            color: white;#}
+{#        }#}
+{##}
+{#        .level-medium {#}
+{#            background: linear-gradient(to right, #FF9800, #FFC107);#}
+{#            color: white;#}
+{#        }#}
+{##}
+{#        .level-hard {#}
+{#            background: linear-gradient(to right, #F44336, #E91E63);#}
+{#            color: white;#}
+{#        }#}
+{##}
+{#        .badge-container {#}
+{#            display: flex;#}
+{#            justify-content: center;#}
+{#            gap: 12px;#}
+{#            margin-top: 15px;#}
+{#        }#}
+{##}
+{#        .level-badge.active {#}
+{#            transform: scale(1.1);#}
+{#            box-shadow: 0 6px 12px rgba(0,0,0,0.2);#}
+{#        }#}
+{##}
+{#        .form-icon {#}
+{#            background: linear-gradient(120deg, var(--primary), var(--secondary));#}
+{#            width: 36px; /* Reduced size */#}
+{#            height: 36px; /* Reduced size */#}
+{#            border-radius: 10px; /* Adjusted radius */#}
+{#            display: flex;#}
+{#            align-items: center;#}
+{#            justify-content: center;#}
+{#            color: white;#}
+{#            font-size: 16px; /* Adjusted size */#}
+{#        }#}
+{##}
+{#        .image-info {#}
+{#            font-size: 0.9rem;#}
+{#            color: #6c757d;#}
+{#            font-style: italic;#}
+{#            text-align: center;#}
+{#            margin-top: 5px;#}
+{#        }#}
+{##}
+{#        @media (max-width: 768px) {#}
+{#            .edit-container {#}
+{#                margin: 15px;#}
+{#            }#}
+{##}
+{#            .edit-body {#}
+{#                padding: 20px;#}
+{#            }#}
+{##}
+{#            .edit-header h2 {#}
+{#                font-size: 1.4rem;#}
+{#            }#}
+{##}
+{#            .form-card {#}
+{#                padding: 18px;#}
+{#            }#}
+{#        }#}
+{##}
+{#        @media (max-width: 480px) {#}
+{#            .edit-header {#}
+{#                padding: 15px;#}
+{#            }#}
+{##}
+{#            .edit-body {#}
+{#                padding: 15px;#}
+{#            }#}
+{##}
+{#            .form-card {#}
+{#                padding: 15px;#}
+{#            }#}
+{##}
+{#            .btn-submit {#}
+{#                padding: 12px 25px;#}
+{#                font-size: 16px;#}
+{#            }#}
+{##}
+{#            .badge-container {#}
+{#                flex-direction: column;#}
+{#                align-items: center;#}
+{#                gap: 8px;#}
+{#            }#}
+{#        }#}
+{#    </style>#}
+{#</head>#}
+{#<body>#}
+{#    <div class="edit-container">#}
+{#        <div class="edit-header">#}
+{#            <h2><i class="fas fa-puzzle-piece"></i> Edit Puzzle</h2>#}
+{#        </div>#}
+{##}
+{#        <form id="puzzleForm" class="edit-body">#}
+{#            <input type="hidden" name="id" value="3">#}
+{##}
+{#            <div class="form-card">#}
+{#                <div class="form-group">#}
+{#                    <label for="puzzleTitle">#}
+{#                        <div class="form-icon">#}
+{#                            <i class="fas fa-heading"></i>#}
+{#                        </div>#}
+{#                        Puzzle Title#}
+{#                    </label>#}
+{#                    <input type="text" class="form-control" id="puzzleTitle" required value="Butterfly">#}
+{#                </div>#}
+{##}
+{#                <div class="form-group">#}
+{#                    <label for="difficultyLevel">#}
+{#                        <div class="form-icon">#}
+{#                            <i class="fas fa-chart-line"></i>#}
+{#                        </div>#}
+{#                        Difficulty Level#}
+{#                    </label>#}
+{#                    <select id="difficultyLevel" class="form-select">#}
+{#                        <option value="easy">Easy</option>#}
+{#                        <option value="medium" selected>Medium</option>#}
+{#                        <option value="hard">Hard</option>#}
+{#                    </select>#}
+{#                    <div class="badge-container">#}
+{#                        <span class="level-badge level-easy">Easy</span>#}
+{#                        <span class="level-badge level-medium active">Medium</span>#}
+{#                        <span class="level-badge level-hard">Hard</span>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{##}
+{#            <div class="form-card">#}
+{#                <div class="form-group">#}
+{#                    <label>#}
+{#                        <div class="form-icon">#}
+{#                            <i class="fas fa-image"></i>#}
+{#                        </div>#}
+{#                        Puzzle Image#}
+{#                    </label>#}
+{##}
+{#                    <div class="image-section">#}
+{#                        <div class="image-preview">#}
+{#                            <img src="https://images.unsplash.com/photo-1531303511329-0d252b5b0a2d?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&w=400" alt="Current Puzzle Image" id="imagePreview">#}
+{#                        </div>#}
+{##}
+{#                        <div class="image-info">Current Image: Butterfly.jpg</div>#}
+{##}
+{#                        <div class="file-upload">#}
+{#                            <i class="fas fa-upload me-2"></i> Upload New Image#}
+{#                            <input type="file" id="imageUpload" accept="image/*" onchange="previewImage(event)">#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{##}
+{#            <button type="submit" class="btn-submit">#}
+{#                <i class="fas fa-save me-2"></i> Update Puzzle#}
+{#            </button>#}
+{#        </form>#}
+{#    </div>#}
+{##}
+{#    <script>#}
+{#        function previewImage(event) {#}
+{#            const file = event.target.files[0];#}
+{#            if (file) {#}
+{#                const reader = new FileReader();#}
+{#                reader.onload = function(e) {#}
+{#                    const preview = document.getElementById('imagePreview');#}
+{#                    preview.src = e.target.result;#}
+{#                    preview.style.display = 'block';#}
+{##}
+{#                    // Update image info text#}
+{#                    document.querySelector('.image-info').textContent = `New Image: ${file.name}`;#}
+{#                }#}
+{#                reader.readAsDataURL(file);#}
+{#            }#}
+{#        }#}
+{##}
+{#        // Update active level badge when selection changes#}
+{#        document.getElementById('difficultyLevel').addEventListener('change', function() {#}
+{#            // Remove active class from all badges#}
+{#            document.querySelectorAll('.level-badge').forEach(badge => {#}
+{#                badge.classList.remove('active');#}
+{#            });#}
+{##}
+{#            // Add active class to the selected badge#}
+{#            const selectedLevel = this.value;#}
+{#            const selectedBadge = document.querySelector(`.level-${selectedLevel}`);#}
+{#            if (selectedBadge) {#}
+{#                selectedBadge.classList.add('active');#}
+{#            }#}
+{#        });#}
+{##}
+{#        // Handle form submission#}
+{#        document.getElementById('puzzleForm').addEventListener('submit', function(e) {#}
+{#            e.preventDefault();#}
+{##}
+{#            // Show success message#}
+{#            const submitBtn = document.querySelector('.btn-submit');#}
+{#            const originalText = submitBtn.innerHTML;#}
+{##}
+{#            submitBtn.innerHTML = '<i class="fas fa-check me-2"></i> Updated Successfully!';#}
+{#            submitBtn.style.background = 'linear-gradient(120deg, #4CAF50, #2E7D32)';#}
+{##}
+{#            // Reset button after delay#}
+{#            setTimeout(() => {#}
+{#                submitBtn.innerHTML = originalText;#}
+{#                submitBtn.style.background = 'linear-gradient(120deg, #4cc9f0, #4361ee)';#}
+{#            }, 2000);#}
+{#        });#}
+{#    </script>#}
+{#</body>#}
+{#</html>#}
+
+
+
+
+
+
+
+

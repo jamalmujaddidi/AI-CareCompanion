@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+{% extends 'Admin/home.html' %}
+
+{% block body %}
+<form id="form1" name="form1" method="post" enctype="multipart/form-data" action="/my_project/edit_video_post/">
+    {% csrf_token %}
+  <table class="table table-bordered" style="width: 700px;">
+    <tr>
+      <th>Title</th><input type="hidden" name="id" value="{{ data.id }}" />
+      <td><input type="text"class="form-control" value="{{ data.Title }}" name="textfield" id="textfield" /></td>
+    </tr>
+    <tr>
+      <th>Video</th>
+
+           <td>
+               <video width="320" height="240" controls>
+  <source src="{{ data.video }}" type="video/mp4">
+</video><input type="file"class="form-control" accept="video/mp4" name="textfield1" id="textfield" /></td>
+
+    </tr>
+    <tr>
+      <td></td>
+      <td><input type="submit"class="btn btn-success" name="button" id="button" value="Edit" /></td>
+    </tr>
+  </table>
+</form>
+{% endblock %}
+</body>
+</html>

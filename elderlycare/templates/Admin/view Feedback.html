@@ -1,0 +1,142 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />#}
+{#<title>Untitled Document</title>#}
+{#</head>#}
+{##}
+{#<body>#}
+{#{% extends 'Admin/home.html' %}#}
+{##}
+{#{% block body %}#}
+{#<form id="form1" name="form1" method="post" action="/my_project/view_feedback_post/">#}
+{#{% csrf_token %}#}
+{#  <table class="table table-bordered" style="width: 700px;">#}
+{#    <tr>#}
+{#      <td>From</td>#}
+{#      <td><label for="textfield"></label>#}
+{#      <input type="date"class="form-control" name="textfield" id="textfield" /></td>#}
+{#      <td>To</td>#}
+{#      <td><label for="textfield2"></label>#}
+{#      <input type="date"class="form-control" name="textfield2" id="textfield2" /></td>#}
+{#      <td><input type="submit"class="btn-success" name="button" id="button" value="Search" /></td>#}
+{#    </tr>#}
+{#  </table>#}
+{#  <table class="table table-bordered" style="width: 700px;">#}
+{#    <tr>#}
+{#      <th>S/No </th>#}
+{#      <th>Date</th>#}
+{#      <th>Feedback</th>#}
+{#      <th>Caretaker</th>#}
+{#    </tr>#}
+{#      {% for i in data %}#}
+{#    <tr>#}
+{#      <td>{{ forloop.counter }}</td>#}
+{#      <td>{{ i.Date }}&nbsp;</td>#}
+{#      <td>{{ i.Feedback }}&nbsp;</td>#}
+{#      <td>{{ i.CARETAKER.caretaker_Name }}</td>#}
+{#    </tr>#}
+{#      {% endfor %}#}
+{#  </table>#}
+{#</form>#}
+{#{% endblock %}#}
+{#</body>#}
+{#</html>#}
+
+
+
+
+
+
+
+{% extends 'Admin/home.html' %}
+
+{% block body %}
+
+<style>
+  .search-card {
+    max-width: 800px;
+    margin: 40px auto 20px;
+    padding: 20px;
+    background-color: #f9f9ff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .search-card h4 {
+    text-align: center;
+    color: #2c3e50;
+    font-weight: bold;
+    margin-bottom: 25px;
+  }
+
+  .feedback-table-container {
+    max-width: 1000px;
+    margin: 40px auto;
+  }
+
+  .table th {
+    background-color: #1976d2;
+    color: white;
+    text-align: center;
+  }
+
+  .table tbody tr:nth-child(even) {
+    background-color: #f2f7fc;
+  }
+
+  .table tbody tr:hover {
+    background-color: #e3f2fd;
+  }
+
+  .form-control:focus {
+    border-color: #1976d2;
+    box-shadow: 0 0 0 0.2rem rgba(25, 118, 210, 0.25);
+  }
+</style>
+
+<div class="search-card">
+  <h4>Search Feedback by Date</h4>
+  <form method="post" action="/my_project/view_feedback_post/#ec">
+    {% csrf_token %}
+    <div class="row align-items-end">
+      <div class="col-md-4 mb-3">
+        <label for="textfield" class="form-label">From Date</label>
+        <input type="date" class="form-control" name="textfield" id="textfield" />
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="textfield2" class="form-label">To Date</label>
+        <input type="date" class="form-control" name="textfield2" id="textfield2" />
+      </div>
+      <div class="col-md-4 mb-3 text-center">
+        <button type="submit" class="btn btn-success w-100">Search</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="feedback-table-container">
+  <table class="table table-bordered shadow">
+    <thead>
+      <tr>
+        <th>S/No</th>
+        <th>Date</th>
+        <th>Feedback</th>
+        <th>Caretaker</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in data %}
+      <tr>
+        <td class="text-center">{{ forloop.counter }}</td>
+        <td>{{ i.Date }}</td>
+        <td>{{ i.Feedback }}</td>
+        <td>{{ i.CARETAKER.caretaker_Name }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

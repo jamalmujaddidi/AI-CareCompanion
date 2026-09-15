@@ -1,0 +1,192 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />#}
+{#<title>Untitled Document</title>#}
+{#</head>#}
+{##}
+{#<body>#}
+{#    {% extends 'Admin/home.html' %}#}
+{##}
+{#{% block body %}#}
+{##}
+{#<form id="form1" name="form1" method="post" enctype="multipart/form-data" action="/my_project/add_caretaker_post/">#}
+{#    {% csrf_token %}#}
+{#  <table class="table table-bordered" style="width: 700px;">#}
+{#    <tr>#}
+{#      <th>Name </th>#}
+{#      <td><label for="textfield"></label>#}
+{#      <input type="text"  class="form-control" requried name="textfield" id="textfield" /></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <th>Place</th>#}
+{#      <td><label for="textfield2"></label>#}
+{#      <input type="text"  class="form-control" required name="textfield2" id="textfield2" /></td>#}
+{#    </tr>#}
+{##}
+{#      <tr>#}
+{#      <th>Gender</th>#}
+{#      <td><label for="textfield2"></label>#}
+{#      <input type="radio" name="gender" required value="Male" id="textfield2" />Male<br>#}
+{#          <input type="radio" name="gender"  value="Female" id="textfield2"/> Female#}
+{#      </td>#}
+{#    </tr>#}
+{##}
+{#    <tr>#}
+{#      <th>Post</th>#}
+{#      <td><label for="textfield3"></label>#}
+{#      <input type="text" class="form-control" reqquired name="textfield3"  id="textfield3" /></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <th>Pin</th>#}
+{#      <td><label for="textfield4"></label>#}
+{#      <input type="text" class="form-control" required name="textfield4" id="textfield4" /></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <th>District</th>#}
+{#      <td><label for="textfield5"></label>#}
+{#      <input type="text" class="form-control" required name="textfield5" id="textfield5" /></td>#}
+{#    </tr>#}
+{#      <tr>#}
+{#      <th>Country</th>#}
+{#      <td><label for="textfield3"></label>#}
+{#      <input type="text" class="form-control" required name="textfield13" id="textfield3" /></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <th>Phone</th>#}
+{#      <td><label for="textfield6"></label>#}
+{#      <input type="text" class="form-control" required name="textfield6" id="textfield6" /></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <th>Email</th>#}
+{#      <td><label for="textfield7"></label>#}
+{#      <input type="text" class="form-control" required name="textfield7" id="textfield7" /></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <th>DOB</th>#}
+{#      <td><label for="textfield8"></label>#}
+{#      <input type="date" class="form-control" required name="textfield8" id="textfield8" /></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <th>Photo</th>#}
+{#      <td><label for="textfield9"></label>#}
+{#      <input type="file" class="form-control" required name="textfield9" id="textfield9" /></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td>&nbsp;</td>#}
+{#      <td><input type="submit" name="button" class="btn btn-success" id="button" value="Add" /></td>#}
+{#    </tr>#}
+{#  </table>#}
+{#</form>#}
+{##}
+{#{% endblock %}#}
+{#</body>#}
+{#</html>#}
+
+
+
+
+
+
+{% extends 'Admin/home.html' %}
+
+{% block body %}
+
+<style>
+  .form-container {
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  .form-container h4 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #2c3e50;
+    font-weight: bold;
+  }
+
+  .form-check-label {
+    margin-left: 5px;
+    margin-right: 15px;
+  }
+</style>
+
+<div class="form-container">
+  <h4>Add New Caretaker</h4>
+
+  <form method="post" enctype="multipart/form-data" action="/my_project/add_caretaker_post/">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="textfield" class="form-label">Name</label>
+      <input type="text" class="form-control" required name="textfield" id="textfield" />
+    </div>
+
+    <div class="mb-3">
+      <label for="textfield2" class="form-label">Place</label>
+      <input type="text" class="form-control" required name="textfield2" id="textfield2" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Gender</label><br />
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="gender" id="genderMale" value="Male" required />
+        <label class="form-check-label" for="genderMale">Male</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="gender" id="genderFemale" value="Female" />
+        <label class="form-check-label" for="genderFemale">Female</label>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="textfield3" class="form-label">Post</label>
+      <input type="text" class="form-control" required name="textfield3" id="textfield3" />
+    </div>
+
+    <div class="mb-3">
+      <label for="textfield4" class="form-label">Pin</label>
+      <input type="text" class="form-control" required name="textfield4" id="textfield4" />
+    </div>
+
+    <div class="mb-3">
+      <label for="textfield5" class="form-label">District</label>
+      <input type="text" class="form-control" required name="textfield5" id="textfield5" />
+    </div>
+
+    <div class="mb-3">
+      <label for="textfield13" class="form-label">Country</label>
+      <input type="text" class="form-control" required name="textfield13" id="textfield13" />
+    </div>
+
+    <div class="mb-3">
+      <label for="textfield6" class="form-label">Phone</label>
+      <input type="text" class="form-control" required name="textfield6" id="textfield6" />
+    </div>
+
+    <div class="mb-3">
+      <label for="textfield7" class="form-label">Email</label>
+      <input type="email" class="form-control" required name="textfield7" id="textfield7" />
+    </div>
+
+    <div class="mb-3">
+      <label for="textfield8" class="form-label">Date of Birth</label>
+      <input type="date" class="form-control" required name="textfield8" id="textfield8" />
+    </div>
+
+    <div class="mb-3">
+      <label for="textfield9" class="form-label">Photo</label>
+      <input type="file" class="form-control" required name="textfield9" id="textfield9" />
+    </div>
+
+    <div class="text-center">
+      <button type="submit" class="btn btn-success px-5">Add</button>
+    </div>
+  </form>
+</div>
+
+{% endblock %}

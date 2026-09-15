@@ -1,0 +1,136 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />#}
+{#<title>Untitled Document</title>#}
+{#</head>#}
+{##}
+{#<body>#}
+{#{% extends 'Admin/home.html' %}#}
+{##}
+{#{% block body %}#}
+{#<form id="form1" name="form1" method="post" enctype="multipart/form-data" action="/my_project/add_puzzle_post/">#}
+{#    {% csrf_token %}#}
+{#  <table class="table table-bordered" style="width: 700px;">#}
+{#      <tr>#}
+{#          <th style="color: #0b2e13">Level</th>#}
+{#          <td><select name="level" class="form-select" >#}
+{#              <option value="easy">Easy</option>#}
+{#              <option value="medium">Medium</option>#}
+{#              <option value="hard">Hard</option>#}
+{##}
+{##}
+{#          </select></td>#}
+{#      </tr>#}
+{#    <tr>#}
+{#      <th style="color: #0b2e13">Photo</th>#}
+{#      <td>&nbsp;<input type="file"class="form-control"required accept="image/jpeg,images/png,images/jpg" name="textfield" id="textfield" /></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <th style="color: #0b2e13">Title</th>#}
+{#      <td>&nbsp;<input type="text" class="form-control" required name="textfield2" id="textfield" /></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td>&nbsp;</td>#}
+{#      <td><input type="submit"class="btn-success" name="button" id="button" value="Add" /></td>#}
+{#    </tr>#}
+{#  </table>#}
+{#</form>#}
+{#{% endblock %}#}
+{#</body>#}
+{#</html>#}
+
+
+
+
+
+
+{% extends 'Admin/home.html' %}
+
+{% block body %}
+<style>
+    body {
+        background: linear-gradient(to right, #e0eafc, #cfdef3);
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .custom-card {
+        background: #ffffff;
+        border: none;
+        border-radius: 20px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease-in-out;
+    }
+
+    .custom-card:hover {
+        transform: scale(1.01);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .custom-header {
+        background: linear-gradient(to right, #ff758c, #ff7eb3);
+        color: white;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        padding: 20px;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: #333;
+    }
+
+    .btn-custom {
+        background: linear-gradient(to right, #56ccf2, #2f80ed);
+        color: white;
+        border: none;
+        transition: background 0.3s ease;
+    }
+
+    .btn-custom:hover {
+        background: linear-gradient(to right, #2f80ed, #56ccf2);
+    }
+</style>
+
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card custom-card">
+                <div class="custom-header text-center">
+                    <h3><i class="bi bi-puzzle-fill me-2"></i>Add New Puzzle</h3>
+                </div>
+                <div class="card-body p-4">
+                    <form method="post" enctype="multipart/form-data" action="/my_project/add_puzzle_post/">
+                        {% csrf_token %}
+
+                        <div class="mb-3">
+                            <label for="level" class="form-label">Select Level</label>
+                            <select name="level" class="form-select" id="level" required>
+                                <option value="easy">Easy</option>
+                                <option value="medium">Medium</option>
+                                <option value="hard">Hard</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="textfield" class="form-label">Upload Puzzle Image</label>
+                            <input type="file" class="form-control" name="textfield" id="textfield" required accept="image/jpeg,image/png,image/jpg" />
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="textfield2" class="form-label">Puzzle Title</label>
+                            <input type="text" class="form-control" name="textfield2" id="textfield2" required placeholder="Enter puzzle title" />
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-custom btn-lg">
+                                <i class="bi bi-plus-circle-fill me-1"></i> Add Puzzle
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

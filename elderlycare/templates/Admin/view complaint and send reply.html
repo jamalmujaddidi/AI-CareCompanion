@@ -1,0 +1,164 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />#}
+{#<title>Untitled Document</title>#}
+{#</head>#}
+{##}
+{#<body>#}
+{#{% extends 'Admin/home.html' %}#}
+{##}
+{#{% block body %}#}
+{#<form id="form1" name="form1" method="post"enctype="multipart/form-data" action="/my_project/view_complaint_post/#ec">#}
+{#{% csrf_token %}#}
+{#<table class="table table-bordered" style="width: 700px;">#}
+{#    <tr>#}
+{#      <th>From</th>#}
+{#      <td><label for="textfield"></label>#}
+{#      <input type="date"class="form-control" name="textfield" id="textfield" /></td>#}
+{#      <th>To </th>#}
+{#      <td><label for="textfield2"></label>#}
+{#      <input type="date"class="form-control" name="textfield2" id="textfield2" /></td>#}
+{#      <td><input type="submit"class="btn btn-success" name="button" id="button" value="Search" /></td>#}
+{#    </tr>#}
+{#  </table>#}
+{#  <table class="table table-bordered" style="width: 700px;">#}
+{#    <tr>#}
+{#      <th>S/No </th>#}
+{#      <th>Complaint</th>#}
+{#      <th>Date</th>#}
+{#      <th>reply </th>#}
+{#      <th>Status </th>#}
+{#      <th>Caretaker</th>#}
+{#      <th></th>#}
+{#    </tr>#}
+{#      {% for i in data %}#}
+{#    <tr>#}
+{#      <td>&nbsp;{{forloop.counter  }}</td>#}
+{#      <td>&nbsp;{{ i.complaint }}</td>#}
+{#      <td>&nbsp;{{ i.Date }}</td>#}
+{#        <td>{{ i.reply }}</td>#}
+{#        <td>{{ i.Status }}</td>#}
+{#        <td>{{ i.CARETAKER.caretaker_Name }}#}
+{#      <td><a href="/my_project/view_sendreply_get/{{ i.id }}#ec" class="btn btn-info"> Sendreply  </a></td>#}
+{##}
+{#    </tr>#}
+{#      {% endfor %}#}
+{#  </table>#}
+{#</form>#}
+{#{% endblock %}#}
+{#</body>#}
+{#</html>#}
+{##}
+{##}
+{##}
+{##}
+{##}
+
+
+
+
+
+
+
+
+
+
+{% extends 'Admin/home.html' %}
+
+{% block body %}
+
+<style>
+  .search-section {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f9f9ff;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .search-section h4 {
+    text-align: center;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 25px;
+  }
+
+  .complaints-table-container {
+    max-width: 1000px;
+    margin: 50px auto;
+  }
+
+  .table th {
+    background-color: #1976d2;
+    color: white;
+    text-align: center;
+  }
+
+  .table td {
+    vertical-align: middle;
+  }
+
+  .table tbody tr:nth-child(even) {
+    background-color: #f2f7fc;
+  }
+
+  .table tbody tr:hover {
+    background-color: #e3f2fd;
+  }
+</style>
+
+<div class="search-section">
+  <h4>Search Complaints by Date</h4>
+  <form method="post" enctype="multipart/form-data" action="/my_project/view_complaint_post/#ec">
+    {% csrf_token %}
+    <div class="row align-items-end">
+      <div class="col-md-4">
+        <label for="textfield" class="form-label">From Date</label>
+        <input type="date" class="form-control" name="textfield" id="textfield" />
+      </div>
+      <div class="col-md-4">
+        <label for="textfield2" class="form-label">To Date</label>
+        <input type="date" class="form-control" name="textfield2" id="textfield2" />
+      </div>
+      <div class="col-md-4 text-center">
+        <button type="submit" class="btn btn-success w-100">Search</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="complaints-table-container">
+  <table class="table table-bordered shadow">
+    <thead>
+      <tr>
+        <th>S/No</th>
+        <th>Complaint</th>
+        <th>Date</th>
+        <th>Reply</th>
+        <th>Status</th>
+        <th>Caretaker</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in data %}
+      <tr>
+        <td class="text-center">{{ forloop.counter }}</td>
+        <td>{{ i.complaint }}</td>
+        <td>{{ i.Date }}</td>
+        <td>{{ i.reply }}</td>
+        <td>{{ i.Status }}</td>
+        <td>{{ i.CARETAKER.caretaker_Name }}</td>
+        <td class="text-center">
+          <a href="/my_project/view_sendreply_get/{{ i.id }}#ec" class="btn btn-info btn-sm">Send Reply</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

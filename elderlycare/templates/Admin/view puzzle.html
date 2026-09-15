@@ -1,0 +1,242 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />#}
+{#<title>Untitled Document</title>#}
+{#</head>#}
+{##}
+{#<body>#}
+{#{% extends 'Admin/home.html' %}#}
+{##}
+{#{% block body %}#}
+{#<form id="form1" name="form1" method="post" action="/my_project/view_puzzle_post/#ec">#}
+{#{% csrf_token %}#}
+{#     <table class="px pull-left" style="width: 700px;">#}
+{#    <tr>#}
+{#      <td>#}
+{#      <input type="text"class="form-control" name="textfield" id="textfield" /></td>#}
+{#      <td><input type="submit"class="btn btn-success" name="button" id="button" value="Search" /></td>#}
+{##}
+{#    </tr>#}
+{#  </table>#}
+{# <table class="table table-bordered" style="width: 700px;">#}
+{#    <tr>#}
+{#      <th>S/No </th>#}
+{#      <th>Title </th>#}
+{#      <th>Photo</th>#}
+{#        <th>Level</th>#}
+{#      <th colspan="2" align="center">Action</th>#}
+{#      #}
+{#    </tr>#}
+{#      {% for i in data %}#}
+{#    <tr>#}
+{#      <td>&nbsp;{{ forloop.counter }}</td>#}
+{#      <td>{{ i.Title }}</td>#}
+{#      <td><img src="{{ i.Photo }}" height="100px" width="100px"> </td>#}
+{#        <td>{{ i.level }}#}
+{#      <td><a href="/my_project/edit_puzzle_get/{{ i.id }}#ec"class="btn btn-info">Edit</a></td>#}
+{#      <td><a href="/my_project/delete_Puzzle_get/{{ i.id }}"  onclick="return confirm('Are You Sure ?')" class="btn btn-danger">Delete</a></td>#}
+{#    </tr>#}
+{#      {% endfor %}#}
+{#  </table>#}
+{#</form>#}
+{#{% endblock %}#}
+{#</body>#}
+{#</html>#}
+
+
+
+
+{% extends 'Admin/home.html' %}
+
+{% block body %}
+<style>
+  body {
+    background: #f9fafb;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  .search-container {
+    max-width: 700px;
+    margin: 30px auto 20px auto;
+    display: flex;
+    gap: 10px;
+  }
+  .search-container input[type="text"] {
+    flex-grow: 1;
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    padding: 8px 12px;
+    font-size: 1rem;
+  }
+  .search-container input[type="submit"] {
+    border-radius: 8px;
+    padding: 8px 20px;
+    font-size: 1rem;
+  }
+  .table-container {
+    max-width: 700px;
+    margin: 0 auto 40px auto;
+    background: white;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  table {
+    border-collapse: separate !important;
+    border-spacing: 0 8px;
+    width: 100%;
+  }
+  thead tr th {
+    background: #0d6efd !important;
+    color: white !important;
+    font-weight: 600;
+    padding: 14px 10px;
+    text-align: center;
+    border-bottom: 2px solid #084298;
+  }
+  tbody tr {
+    background: #f1f5ff;
+    transition: background-color 0.3s ease;
+    border-radius: 12px;
+  }
+  tbody tr:hover {
+    background: #d6e0ff;
+  }
+  tbody tr td {
+    vertical-align: middle;
+    text-align: center;
+    padding: 12px 8px;
+    font-weight: 500;
+    color: #333;
+  }
+  tbody tr td.img-cell img {
+    border-radius: 8px;
+    object-fit: cover;
+  }
+  .btn-info {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+  }
+  .btn-info:hover {
+    background-color: #138496;
+    border-color: #117a8b;
+  }
+  .btn-danger {
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+  }
+  .btn-danger:hover {
+    background-color: #bb2d3b;
+    border-color: #a52834;
+  }
+</style>
+
+
+
+    <style>
+  /* existing styles... */
+
+  /* Search button */
+  .search-container input[type="submit"] {
+    background-color: #198754;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 10px 25px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .search-container input[type="submit"]:hover {
+    background-color: #157347;
+    box-shadow: 0 4px 12px rgba(21, 115, 71, 0.4);
+  }
+
+  /* Edit button */
+  .btn-info {
+    background-color: #0dcaf0;
+    border-color: #0dcaf0;
+    font-weight: 600;
+    padding: 6px 18px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    color: white !important;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+  }
+  .btn-info:hover {
+    background-color: #0a95c7;
+    border-color: #0a95c7;
+    box-shadow: 0 4px 10px rgba(10, 149, 199, 0.5);
+    color: white !important;
+  }
+
+  /* Delete button */
+  .btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    font-weight: 600;
+    padding: 6px 18px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    color: white !important;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+  }
+  .btn-danger:hover {
+    background-color: #a52834;
+    border-color: #a52834;
+    box-shadow: 0 4px 10px rgba(165, 40, 52, 0.6);
+    color: white !important;
+  }
+</style>
+
+
+
+<form id="form1" name="form1" method="post" action="/my_project/view_puzzle_post/#ec">
+    {% csrf_token %}
+  <div class="search-container">
+    <input type="text" class="form-control" name="textfield" id="textfield" placeholder="Search puzzles by title..." />
+    <input type="submit" class="btn btn-success" name="button" id="button" value="Search" />
+  </div>
+
+  <div class="table-container">
+    <table class="table table-bordered mb-0">
+      <thead>
+        <tr>
+          <th style="width:5%;">S/No</th>
+          <th style="width:40%;">Title</th>
+          <th style="width:20%;">Photo</th>
+          <th style="width:15%;">Level</th>
+          <th style="width:10%;" colspan="2">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in data %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td class="text-start ps-3">{{ i.Title }}</td>
+          <td class="img-cell"><img src="{{ i.Photo }}" alt="Puzzle Image" height="80" width="80" /></td>
+          <td>{{ i.level|title }}</td>
+          <td>
+            <a href="/my_project/edit_puzzle_get/{{ i.id }}#ec" class="btn btn-info btn-sm px-3">Edit</a>
+          </td>
+          <td>
+            <a href="/my_project/delete_Puzzle_get/{{ i.id }}" onclick="return confirm('Are You Sure ?')" class="btn btn-danger btn-sm px-3">Delete</a>
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="6" class="text-center text-muted py-4">No puzzles found.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</form>
+{% endblock %}
+

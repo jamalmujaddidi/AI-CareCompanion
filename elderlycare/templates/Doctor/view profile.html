@@ -1,0 +1,126 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />#}
+{#<title>Untitled Document</title>#}
+{#</head>#}
+{##}
+{#<body>#}
+{#{% extends 'Doctor/home.html' %}#}
+{##}
+{#{% block body %}#}
+{#<form id="form1" name="form1" method="post" action="">#}
+{#{% csrf_token %}#}
+{##}
+{#   <table class="table table-bordered" style="width: 700px;">#}
+{#    <tr>#}
+{#      <td ></td>#}
+{#      <td><img src="{{ data.photo }}" height="100px" width="100px"></td>#}
+{#      </tr>#}
+{#    <tr>#}
+{#      <th>Name</th>#}
+{#      <td>{{ data.Doctor_name }}</td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <th>Gender</th>#}
+{#      <td>&nbsp;{{ data.gender }}</td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <th>Address</th>#}
+{#      <td>{{data.place}}<br>{{ data.post }}<br>{{ data.country }}</td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <th>Contact</th>#}
+{#      <td>&nbsp;{{ data.phone }}<br>{{ data.Email }}</td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <th>DOB</th>#}
+{#      <td>{{ data.DOB }}</td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <th>Specialization</th>#}
+{#      <td>{{ data.specialization }}</td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <th>Qualification</th>#}
+{#      <td>&nbsp;{{ data.qualification }}</td>#}
+{##}
+{#    </tr>#}
+{#      <tr>#}
+{#      <th>Experience</th>#}
+{#      <td>&nbsp;{{ data.Experience }}</td>#}
+{##}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td>&nbsp;</td>#}
+{#        <td><a href="/my_project/doc_edit_profile_get/#ec" class="btn btn-success"> Edit</a></td>#}
+{#    </tr>#}
+{#  </table>#}
+{#</form>#}
+{#{% endblock %}#}
+{#</body>#}
+{#</html>#}
+
+
+{% extends 'Doctor/home.html' %}
+
+{% block body %}
+<div class="container mt-5">
+  <div class="card shadow-lg border-0">
+    <div class="card-header bg-primary text-white">
+      <h4 class="mb-0">Doctor Profile</h4>
+    </div>
+    <div class="card-body">
+      <div class="row align-items-center">
+        <div class="col-md-3 text-center mb-3 mb-md-0">
+          <img src="{{ data.photo }}" alt="Doctor Photo" class="img-fluid rounded-circle border border-3" style="width: 150px; height: 150px; object-fit: cover;">
+        </div>
+        <div class="col-md-9">
+          <table class="table table-borderless mb-0">
+            <tbody>
+              <tr>
+                <th scope="row" class="w-25">Name:</th>
+                <td>{{ data.Doctor_name }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Gender:</th>
+                <td>{{ data.gender }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Date of Birth:</th>
+                <td>{{ data.DOB }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Specialization:</th>
+                <td>{{ data.specialization }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Qualification:</th>
+                <td>{{ data.qualification }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Experience:</th>
+                <td>{{ data.Experience }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Contact:</th>
+                <td>{{ data.phone }}<br>{{ data.Email }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Address:</th>
+                <td>{{ data.place }}<br>{{ data.post }}<br>{{ data.country }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="mt-4 text-end">
+        <a href="/my_project/doc_edit_profile_get/#ec" class="btn btn-success px-4">
+          <i class="bi bi-pencil-square me-2"></i>Edit Profile
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
