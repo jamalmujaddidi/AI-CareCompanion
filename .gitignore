@@ -259,3 +259,7 @@ fabric.properties
 Mydata/
 fall_dataset/
 my_model/
+# Flutter project exceptions
+!ElderlyCare-Flutter/lib/
+!ElderlyCare-Flutter/lib/**
+!ElderlyCare-Flutter/**/*.json
