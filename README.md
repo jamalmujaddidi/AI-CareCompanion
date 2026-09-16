@@ -1,894 +1,675 @@
 # AI CareCompanion
 
-### A Smart System for Elderly Wellness and Monitoring
+## A Smart System for Elderly Wellness and Monitoring
 
-AI CareCompanion is a modular elderly-care platform developed using **Python, Django, Flutter, MySQL, and AI/computer-vision technologies**. The system brings together physical safety monitoring, rehabilitation support, emotional awareness, cognitive engagement, motor-skill training, and healthcare-management functions within a unified application.
+AI CareCompanion is a modular elderly-care platform developed using
+**Flutter**, **Python/Django**, and **MySQL**. It combines a mobile
+application with AI and computer-vision capabilities to support elderly
+users in physical safety, rehabilitation, cognitive engagement,
+emotional awareness, and healthcare management.
 
-The project is designed particularly to support elderly users and people requiring additional assistance, including users affected by **stroke, autism, and Alzheimer's-related challenges**. It provides separate interfaces and workflows for **Patients, Caretakers, Doctors, and Administrators**.
+The system provides role-based functionality for **Patients, Caretakers,
+Doctors, and Administrators**.
 
----
+------------------------------------------------------------------------
 
 ## Overview
 
-Elderly users may require support across several areas at the same time: physical safety, rehabilitation, cognitive stimulation, emotional well-being, medication and appointment management, and communication with caregivers or healthcare professionals.
+The platform integrates:
 
-AI CareCompanion addresses these needs through a combination of:
+-   AI-based fall detection
+-   Malayalam handwriting recognition for stroke rehabilitation
+-   Facial emotion recognition
+-   Cognitive engagement activities
+-   Object and person recognition
+-   Camera-based activity and motor-skill monitoring
+-   Doctor appointment management
+-   Medication and reminder notifications
+-   Patient task and schedule management
+-   Role-based interfaces for Admins, Doctors, Caretakers, and Patients
 
-- **Flutter** for the user-facing application
-- **Python/Django** for server-side application logic
-- **MySQL** for persistent data management
-- **Computer vision and deep-learning models** for intelligent monitoring
-- **Pose estimation** for fall and activity-related analysis
-- **Facial emotion recognition**
-- **Malayalam handwriting recognition** for rehabilitation exercises
-- **Object and person recognition**
-- **Healthcare and reminder-management workflows**
+The system is organized as a Flutter client connected to a Python/Django
+backend, with MySQL used for persistent application data.
 
-The project is organized as a modular system so that AI-based components and conventional application features can work together through the backend.
-
----
+------------------------------------------------------------------------
 
 ## Key Features
 
-### 1. Fall Detection and Physical Safety
+### Fall Detection
 
-The system includes an AI-based fall-detection component that analyzes human pose information to identify potential falls.
+The dedicated fall-detection implementation uses **YOLOv7-Pose**, human
+pose estimation, Python/PyTorch components, and video/image processing.
 
-The dedicated fall-detection implementation uses:
+The pretrained `yolov7-w6-pose.pt` weight is intentionally excluded from
+Git because of its size and must be supplied locally when running the
+fall-detection module.
 
-- **YOLOv7-Pose**
-- Human pose estimation
-- Video/image-based analysis
-- Fall-event processing
-- Caregiver notification functionality
-- Fall-related image/video handling
+### Malayalam Handwriting Recognition
 
-The repository's fall-detection implementation loads the pretrained:
+The Flutter application provides an interactive drawing interface for
+Malayalam handwriting exercises. The implementation captures the
+drawing, sends it to the Django backend, processes the recognition
+workflow, and records exercise results.
 
-```text
-yolov7-w6-pose.pt
-```
+This functionality is intended particularly for stroke-rehabilitation
+exercises.
 
-This model file is intentionally not stored in the Git repository because of its large size.
+### Emotion Recognition
 
----
+The project includes facial emotion recognition based on a deep-learning
+model trained using the **FER-2013** dataset.
 
-### 2. Malayalam Handwriting Recognition for Stroke Rehabilitation
+The implementation includes face processing, emotion classification,
+model-training code, and locally stored model artifacts.
 
-AI CareCompanion provides an interactive handwriting exercise designed to support stroke rehabilitation.
+Detailed experimental metrics are not listed here because different
+sections of the academic documentation report different experiment
+results.
 
-The patient can:
+### Cognitive Engagement
 
-1. Draw a Malayalam character using the application's drawing interface.
-2. Capture the drawing as an image.
-3. Encode the image for transmission.
-4. Send the handwriting data to the Django backend.
-5. Receive recognition/evaluation results.
-6. Record whether the exercise was successfully completed.
+The patient application includes:
 
-The Flutter implementation communicates with the backend through the handwriting-related Django endpoints and records exercise results.
+-   Word rearrangement
+-   Scrambled-word activities
+-   Puzzle solving
+-   Image-based puzzles
+-   Anagram activities
+-   Word pronunciation
+-   Object recognition
 
-This feature is intended to provide an interactive approach to fine-motor rehabilitation and handwriting practice.
+### Object and Person Recognition
 
----
+The patient module provides separate object-recognition and
+person-recognition workflows connected to backend processing.
 
-### 3. Facial Emotion Recognition
+### Motor-Skill and Activity Monitoring
 
-The system includes facial emotion recognition using a deep-learning model trained with the **FER-2013 dataset**.
+The project includes camera-based activity monitoring and
+rehabilitation-oriented functionality. The academic documentation
+describes physical activity evaluation using **MediaPipe-based hand pose
+estimation**.
 
-The emotion-recognition component supports:
+### Healthcare Management
 
-- Face detection
-- Facial-expression analysis
-- Emotion classification
-- Model-based inference
-- Integration with the elderly-care application
+The system includes:
 
-The backend contains the emotion-training and inference components, including the trained emotion model.
+-   Doctor registration and profiles
+-   Doctor search
+-   Appointments
+-   Previous bookings
+-   Patient management
+-   Doctor-patient communication
+-   Doctor schedules
+-   Patient schedules
+-   Feedback
+-   Complaints and replies
 
-> **Note:** The thesis contains different reported training/validation/test figures in different sections. This README therefore does not present a single accuracy figure as the definitive project result.
+### Medication and Reminders
 
----
+The application includes:
 
-### 4. Cognitive Engagement Activities
+-   Pill/medication time management
+-   Pill notifications
+-   Patient reminders
+-   Tasks
+-   Schedules
 
-AI CareCompanion includes activities intended to provide cognitive stimulation and engagement.
-
-Examples include:
-
-- Word rearrangement
-- Scrambled-word activities
-- Image puzzles
-- Puzzle-solving activities
-- Object recognition
-- Person recognition
-- Word pronunciation-related functionality
-
-These activities are integrated into the patient-facing Flutter application.
-
----
-
-### 5. Motor-Skill and Activity Training
-
-The platform includes camera-based activity and motor-skill monitoring functionality.
-
-The system can use computer-vision/pose information to support physical exercises and activity monitoring. The project documentation describes **MediaPipe-based hand/pose analysis** for rehabilitation-oriented activity tracking.
-
-The purpose is to provide interactive exercises and support monitoring of rehabilitation-related activities.
-
----
-
-### 6. Healthcare Management
-
-The platform provides application-level healthcare-management functionality for patients, caretakers, doctors, and administrators.
-
-Functions represented in the application include:
-
-- Doctor registration
-- Doctor search
-- Doctor viewing
-- Doctor-patient interaction
-- Appointment creation
-- Appointment viewing
-- Appointment management
-- Patient registration
-- Patient management
-- Caretaker-related workflows
-- Complaints
-- Feedback
-- Doctor communication/chat functionality
-
----
-
-### 7. Medication and Reminder Management
-
-The application includes reminder and medication-related functionality.
-
-Examples include:
-
-- Pill/medication notifications
-- Pill-time management
-- Reminder viewing
-- Task creation
-- Task editing
-- Schedule creation
-- Schedule editing
-- Notification functionality
-
-These features are integrated into the patient and caretaker workflows.
-
----
+------------------------------------------------------------------------
 
 ## User Roles
 
-AI CareCompanion provides different functionality according to the user's role.
+### Admin
 
-### Patient
-
-The patient-facing application provides access to:
-
-- Fall-related information
-- Handwriting rehabilitation
-- Emotion recognition
-- Cognitive activities
-- Object recognition
-- Person recognition
-- Word activities
-- Tasks and reminders
-- Pill notifications
-- Appointments
-- Profile management
-- Activity monitoring
-- Rehabilitation-related activities
-
-### Caretaker
-
-Caretakers can interact with patient-related information and monitoring functionality, including:
-
-- Patient management
-- Fall notifications
-- Patient activities
-- Appointments
-- Tasks and schedules
-- Medication-related information
-- Profile-related functions
+The administrator interface includes management workflows for patients,
+caretakers, doctors, doctor verification, appointments, feedback,
+complaints, patient activity, fall notifications, emotion information,
+medication notifications, schedules, puzzles, videos, and words.
 
 ### Doctor
 
-Doctors have application functionality related to:
+Doctor functionality includes registration, profile management,
+schedules, patient viewing, patient activity, appointments, fall
+notifications, and patient communication.
 
-- Doctor registration
-- Patient/doctor interaction
-- Appointments
-- Patient-related information
-- Communication
-- Feedback and related workflows
+### Caretaker
 
-### Administrator
+Caretaker functionality includes patient management, patient
+information, tasks, schedules, medication times, activity information,
+fall notifications, and healthcare coordination.
 
-The backend includes administrator-oriented functionality for managing system data and users.
+### Patient
 
----
+The patient application provides access to profile management, tasks,
+reminders, medication notifications, doctors, appointments, fall
+information, emotion recognition, Malayalam handwriting exercises,
+object recognition, person recognition, cognitive activities, word
+pronunciation, and videos.
+
+------------------------------------------------------------------------
 
 ## System Architecture
 
-At a high level, AI CareCompanion follows a layered architecture:
-
-```text
+``` text
 ┌──────────────────────────────────────┐
 │          Flutter Application         │
 │                                      │
-│ Patient │ Caretaker │ Doctor │ Admin│
+│ Patient • Caretaker • Doctor • Admin │
 └──────────────────┬───────────────────┘
-                   │
-                   │ HTTP Requests
+                   │ HTTP
                    ▼
 ┌──────────────────────────────────────┐
-│          Python / Django Backend     │
+│        Python / Django Backend       │
 │                                      │
-│ Authentication │ Views │ URLs        │
-│ Application Logic │ Notifications    │
-│ Healthcare Management │ AI Endpoints │
+│ Views • URLs • Models • AI workflows │
+│ Notifications • Application logic   │
 └───────────────┬───────────────┬──────┘
                 │               │
                 ▼               ▼
-┌─────────────────────┐  ┌──────────────────────┐
-│     AI / CV Models  │  │       MySQL           │
-│                     │  │                       │
-│ Fall Detection      │  │ Users / Patients      │
-│ Emotion Recognition │  │ Appointments          │
-│ Handwriting         │  │ Tasks / Schedules     │
-│ Object Recognition  │  │ Notifications         │
-│ Pose / Activity     │  │ Other application data│
-└─────────────────────┘  └──────────────────────┘
+       ┌────────────────┐  ┌─────────────────┐
+       │     MySQL      │  │ AI / CV Models  │
+       │    Database    │  │                 │
+       └────────────────┘  │ YOLOv7-Pose     │
+                           │ Emotion model   │
+                           │ Handwriting     │
+                           │ Recognition     │
+                           └─────────────────┘
 ```
 
-### Application Flow
-
-A typical interaction follows this pattern:
-
-```text
-User
-  ↓
-Flutter UI
-  ↓
-HTTP Request
-  ↓
-Django URL / View
-  ↓
-Application Logic
-  ↓
-AI Model and/or Database
-  ↓
-Response
-  ↓
-Flutter UI
-```
-
----
+------------------------------------------------------------------------
 
 ## Repository Structure
 
-The repository contains the major components of the complete AI CareCompanion system.
-
-```text
+``` text
 AI-CareCompanion/
 │
-├── ElderlyCare-Flutter/          # Flutter mobile/application frontend
-│   ├── android/
-│   ├── ios/
-│   ├── linux/
-│   ├── macos/
-│   ├── web/
-│   ├── windows/
-│   ├── assets/
-│   ├── lib/
-│   │   ├── Patient/
-│   │   └── ...
-│   ├── test/
-│   └── pubspec.yaml
+├── ElderlyCare-Flutter/       # Flutter application
 │
-├── elderlycare/                  # Django project configuration
-│   ├── settings.py
-│   ├── urls.py
-│   ├── asgi.py
-│   └── wsgi.py
+├── elderlycare/               # Django project/backend
+│   ├── elderlycare/           # Django project configuration
+│   ├── my_project/            # Main Django application
+│   ├── templates/             # Admin/Doctor/login templates
+│   └── manage.py              # Django management entry point
 │
-├── my_project/                   # Django application
-│   ├── views.py
-│   ├── urls.py
-│   ├── models.py
-│   ├── functions.py
-│   ├── detection_emotion.py
-│   ├── emotions_training.py
-│   ├── hand.py
-│   ├── scan.py
-│   ├── model.h5
-│   ├── emo_model-full.h5
-│   ├── classes.csv
-│   ├── migrations/
-│   ├── static/
-│   └── ...
+├── cfg/                       # YOLO configuration files
+├── models/                    # YOLO model implementation
+├── utils/                     # YOLO/supporting utilities
 │
-├── templates/                    # Django HTML templates
-│   ├── Admin/
-│   ├── Caretaker/
-│   ├── Doctor/
-│   ├── login.html
-│   └── login_index.html
-│
-├── cfg/                          # YOLO configuration files
-├── models/                       # YOLO/model implementation components
-├── utils/                        # Supporting YOLO utilities
-│
-├── DBConnection.py               # Database connection component
-├── main.py                       # Fall-detection entry point
-├── poseEstimation.py             # Pose-estimation component
-├── requirements.txt              # Python dependencies
+├── main.py                    # Fall-detection entry point
+├── poseEstimation.py          # Pose-estimation functionality
+├── tools.py                   # Fall-detection/data utilities
+├── DBConnection.py            # Database connection support
+├── requirements.txt           # Python dependencies
 ├── .gitignore
 └── README.md
 ```
 
----
+------------------------------------------------------------------------
 
 ## Technology Stack
 
 ### Frontend
 
-- **Flutter**
-- **Dart**
-- HTTP communication
-- Shared preferences/local application state
-- Camera/image functionality
-- Video functionality
-- Speech-related functionality
-- Local notifications
-- Charts and activity visualization
+-   Flutter
+-   Dart
+-   HTTP communication
+-   Shared preferences
+-   Camera/image functionality
+-   Video playback
+-   Local notifications
+-   Speech-to-text
+-   Activity and chart interfaces
 
 ### Backend
 
-- **Python**
-- **Django**
-- Django views and URL routing
-- Application/business logic
-- HTTP-based communication with the Flutter client
+-   Python
+-   Django
+-   Django views and URL routing
+-   Django models
+-   HTML templates
+-   Static web resources
 
 ### Database
 
-- **MySQL**
+-   MySQL
 
-The database layer is used for persistent application information such as users, patients, appointments, schedules, tasks, notifications, and related records.
+### AI and Computer Vision
 
-### Artificial Intelligence / Computer Vision
+-   YOLOv7-Pose
+-   PyTorch
+-   Keras/TensorFlow model artifacts
+-   OpenCV
+-   MediaPipe-based activity/hand pose processing
+-   Facial emotion recognition
+-   Handwriting recognition
+-   Object recognition
+-   Person recognition
 
-- **YOLOv7-Pose**
-- Pose estimation
-- Deep-learning-based facial emotion recognition
-- FER-2013
-- Handwriting recognition
-- Object recognition
-- Person recognition
-- Computer-vision-based activity monitoring
-- MediaPipe-based pose/hand analysis for rehabilitation-oriented activities
+------------------------------------------------------------------------
 
----
+## Flutter Application
 
-## AI Components
+The Flutter application is located in:
 
-### Fall Detection
+``` text
+ElderlyCare-Flutter/
+```
 
-The dedicated fall-detection component is based on **YOLOv7-Pose**.
+Its main source is:
+
+``` text
+ElderlyCare-Flutter/lib/
+```
+
+Patient-specific features are organized under:
+
+``` text
+ElderlyCare-Flutter/lib/Patient/
+```
+
+Important patient screens include:
+
+``` text
+Patient/
+├── Emotion recognition.dart
+├── handwriting.dart
+├── Object recognition.dart
+├── Recognize person.dart
+├── new detection.dart
+├── viewFall.dart
+├── Word rearrangement.dart
+├── solvepuzzle.dart
+├── scrambleword_new.dart
+├── Word pronouncialtion.dart
+├── Pill notifications.dart
+└── Patient home.dart
+```
+
+------------------------------------------------------------------------
+
+## Django Backend
+
+The Django project is located under:
+
+``` text
+elderlycare/
+```
+
+The management entry point is:
+
+``` text
+elderlycare/manage.py
+```
+
+The main Django application is:
+
+``` text
+elderlycare/my_project/
+```
 
 Important files include:
 
-```text
-main.py
-poseEstimation.py
-models/
-utils/
-cfg/
+``` text
+my_project/
+├── admin.py
+├── apps.py
+├── classes.csv
+├── detection_emotion.py
+├── emotions_training.py
+├── functions.py
+├── hand.py
+├── models.py
+├── scan.py
+├── tests.py
+├── urls.py
+└── views.py
 ```
 
-The implementation expects the pretrained model:
+------------------------------------------------------------------------
 
-```text
+## AI Model Dependencies
+
+### Fall Detection
+
+The fall-detection code expects:
+
+``` text
 yolov7-w6-pose.pt
 ```
 
-to be available in the project root.
+in the repository root:
 
----
-
-### Emotion Recognition
-
-The Django application contains emotion-recognition components including:
-
-```text
-my_project/detection_emotion.py
-my_project/emotions_training.py
-my_project/emo_model-full.h5
-```
-
-The project documentation identifies **FER-2013** as the dataset used for emotion-recognition model training.
-
----
-
-### Malayalam Handwriting Recognition
-
-Relevant implementation is located in the Flutter patient module and Django backend.
-
-Flutter:
-
-```text
-ElderlyCare-Flutter/lib/Patient/handwriting.dart
-```
-
-Backend-related functionality includes:
-
-```text
-my_project/hand.py
-```
-
-The Flutter handwriting module captures the user's drawing and communicates with the Django backend for recognition/evaluation.
-
----
-
-### Object and Person Recognition
-
-The project includes patient-facing functionality for:
-
-- Object recognition
-- Person recognition
-
-Relevant Flutter screens include:
-
-```text
-ElderlyCare-Flutter/lib/Patient/Object recognition.dart
-ElderlyCare-Flutter/lib/Patient/Recognize person.dart
-```
-
-The Django application also contains corresponding backend processing/routes.
-
----
-
-## Datasets and Model Dependencies
-
-### FER-2013
-
-The emotion-recognition component uses the **FER-2013 facial-expression dataset**.
-
-### Fall Detection Data
-
-The fall-detection implementation uses project-specific fall-detection data and preprocessing components. The repository's fall-detection code references the local fall-detection dataset structure.
-
-Large datasets and runtime-generated data are intentionally not included in the Git repository when they are not required as source code.
-
-### Pretrained YOLOv7-Pose Weights
-
-The fall-detection system requires:
-
-```text
-yolov7-w6-pose.pt
-```
-
-The weight file is intentionally excluded from Git because of its large size.
-
-Place the file in:
-
-```text
+``` text
 AI-CareCompanion/
-└── yolov7-w6-pose.pt
+├── yolov7-w6-pose.pt
+├── main.py
+├── poseEstimation.py
+├── models/
+├── utils/
+└── cfg/
 ```
 
-alongside:
+The weight file is intentionally not committed to Git.
 
-```text
-main.py
-poseEstimation.py
-models/
-utils/
-cfg/
+### Django/Keras Models
+
+The original Django project contains:
+
+``` text
+elderlycare/my_project/model.h5
+elderlycare/my_project/emo_model_full.h5
 ```
 
----
+These `.h5` artifacts are excluded by `.gitignore`.
+
+`model.h5` is referenced by the Django scanning workflow. The current
+source uses an absolute Windows path for this model, so that path may
+need to be adapted when the application is run on another machine.
+
+`emo_model_full.h5` is produced by the emotion-model training workflow.
+The repository should be treated as containing the training
+implementation and local model artifact rather than assuming it is
+loaded by every runtime path.
+
+------------------------------------------------------------------------
+
+## Datasets and Local Resources
+
+Large/local resources are intentionally excluded from GitHub:
+
+``` text
+fall_dataset/
+Mydata/
+my_model/
+yolov7-w6-pose.pt
+*.h5
+```
+
+These exclusions keep the source repository manageable while preserving
+the original local project environment.
+
+------------------------------------------------------------------------
 
 ## Installation and Setup
 
-> The project consists of multiple components. Setup should therefore be performed for the Django/Python backend, database, Flutter application, and AI dependencies.
+Because the project combines Flutter, Django, MySQL, and AI components,
+setup consists of several parts.
 
-### 1. Clone the Repository
+### Clone the Repository
 
-```bash
+``` bash
 git clone https://github.com/jamalmujaddidi/AI-CareCompanion.git
 cd AI-CareCompanion
 ```
 
----
+### Python Environment
 
-### 2. Python Environment
+Create and activate a virtual environment:
 
-Create and activate a Python virtual environment:
-
-```bash
+``` bash
 python -m venv venv
 ```
 
 Windows:
 
-```bash
-venv\Scripts\activate
-```
-
-Linux/macOS:
-
-```bash
-source venv/bin/activate
+``` bash
+venv\Scriptsctivate
 ```
 
 Install the Python dependencies:
 
-```bash
+``` bash
 pip install -r requirements.txt
 ```
 
-> The exact dependency requirements should be taken from the repository's `requirements.txt`.
+> Additional Python packages required by the Django application may
+> depend on the original development environment.
 
----
+### MySQL
 
-### 3. Configure MySQL
+Configure the MySQL database according to the Django project's local
+configuration.
 
-Create/configure the MySQL database required by the Django application.
+Then enter the Django directory:
 
-The Django project's database configuration is located in:
-
-```text
-elderlycare/settings.py
+``` bash
+cd elderlycare
 ```
 
-Database credentials and local environment-specific configuration should be supplied according to the local development environment.
+Run migrations:
 
----
-
-### 4. Django Setup
-
-From the repository root:
-
-```bash
+``` bash
 python manage.py migrate
 ```
 
-Start the Django development server:
+Start the Django server:
 
-```bash
+``` bash
 python manage.py runserver
 ```
 
-The backend is used by the Flutter application for authentication, healthcare workflows, notifications, AI-related requests, and other application operations.
+### Flutter
 
----
+From the repository root, enter:
 
-### 5. Flutter Setup
-
-Open:
-
-```text
-ElderlyCare-Flutter/
+``` bash
+cd ElderlyCare-Flutter
 ```
 
 Install Flutter dependencies:
 
-```bash
+``` bash
 flutter pub get
 ```
 
-Run the Flutter application using an appropriate emulator, connected device, or supported desktop/web target.
+Run the application:
 
-```bash
+``` bash
 flutter run
 ```
 
----
+The current Flutter implementation allows the backend IP address to be
+supplied through the application interface.
 
-### 6. Configure Backend Address in Flutter
+### Fall Detection Model
 
-The Flutter application contains an IP-address configuration flow.
+Supply the required YOLOv7-Pose weight:
 
-The application constructs the backend URL in the form:
-
-```text
-http://<IP_ADDRESS>:8000/my_project
-```
-
-The IP address should correspond to the machine running the Django server when the Flutter application is communicating with a backend running on another device.
-
----
-
-### 7. Fall Detection Model
-
-Before running the fall-detection component, make sure:
-
-```text
+``` text
 yolov7-w6-pose.pt
 ```
 
-is available in the repository root.
+and place it in the repository root.
 
-The source code loads the model from that location.
-
----
+------------------------------------------------------------------------
 
 ## Running the System
 
-Because AI CareCompanion contains multiple interconnected components, the general development workflow is:
+The project contains multiple connected components, so the exact startup
+sequence depends on the intended workflow and local environment.
 
-```text
-1. Start MySQL
-       ↓
-2. Start Django backend
-       ↓
-3. Configure backend IP in Flutter
-       ↓
-4. Run Flutter application
-       ↓
-5. Use the required patient/caretaker/doctor workflow
-       ↓
-6. Invoke the corresponding AI or healthcare feature
+### Django
+
+From:
+
+``` text
+AI-CareCompanion/elderlycare/
 ```
 
-For standalone fall-detection development, the YOLOv7-Pose component can be run through the dedicated Python implementation.
+run:
 
----
-
-## Backend API / Endpoint Integration
-
-The Flutter application communicates with the Django backend using HTTP requests.
-
-Examples of application-level backend functionality include endpoints related to:
-
-- Login/authentication
-- Handwriting recognition
-- Handwriting exercise result recording
-- Fall notifications
-- Emotion recognition
-- Object recognition
-- Person recognition
-- Pose/activity monitoring
-- Pill notifications
-- Doctors
-- Caretakers
-- Patients
-- Appointments
-- Tasks
-- Schedules
-
-The exact routes and implementation are defined in:
-
-```text
-my_project/urls.py
-my_project/views.py
+``` bash
+python manage.py runserver
 ```
 
-The Flutter client stores and uses the configured backend URL for these requests.
+### Flutter
 
----
+From:
 
-## Database
-
-MySQL is used as the persistent database layer.
-
-The Django application contains the database model definitions in:
-
-```text
-my_project/models.py
+``` text
+AI-CareCompanion/ElderlyCare-Flutter/
 ```
 
-The database supports application information associated with the platform's healthcare and monitoring workflows.
+run:
 
-The repository also contains:
-
-```text
-my_project/migrations/
+``` bash
+flutter run
 ```
 
-for Django database migrations.
+### Fall Detection
 
----
+The dedicated fall-detection implementation uses:
 
-## Application Modules
-
-The Flutter application contains screens and workflows covering areas such as:
-
-```text
-Authentication
-├── Login
-├── Signup
-└── Profile
-
-Patient
-├── Patient Home
-├── Fall Information
-├── Handwriting Rehabilitation
-├── Emotion Recognition
-├── Object Recognition
-├── Person Recognition
-├── Cognitive Activities
-├── Word Rearrangement
-├── Puzzles
-├── Reminders
-├── Pill Notifications
-├── Appointments
-└── Activity Monitoring
-
-Healthcare
-├── Doctor Registration
-├── Doctor Search
-├── Doctor View
-├── Appointment Creation
-├── Appointment View
-└── Doctor Communication
-
-Care Management
-├── Patient Management
-├── Tasks
-├── Schedules
-├── Notifications
-├── Feedback
-└── Complaints
+``` text
+main.py
+poseEstimation.py
+tools.py
+yolov7-w6-pose.pt
 ```
 
----
+Refer to the source code and local environment for the exact execution
+workflow.
 
-## Project Evaluation
+------------------------------------------------------------------------
 
-The thesis documents evaluation of the system through functional and model-related testing.
+## Feature-to-Repository Mapping
 
-The evaluation covers areas including:
+  -----------------------------------------------------------------------------------------------
+  Functionality                       Main Repository Location
+  ----------------------------------- -----------------------------------------------------------
+  Fall Detection                      `main.py`, `poseEstimation.py`, `models/`, `utils/`, `cfg/`
 
-- Functional testing
-- Integration testing
-- AI/model evaluation
-- Application workflows
-- User-oriented system functionality
+  Fall Notifications                  `elderlycare/my_project/views.py` and Flutter notification
+                                      screens
 
-The thesis contains multiple experiment/result sections with differing reported emotion-recognition metrics. To avoid presenting conflicting experimental figures as one definitive result, this README focuses on the implemented system and its documented evaluation methodology rather than selecting one metric set.
+  Malayalam Handwriting               `ElderlyCare-Flutter/lib/Patient/handwriting.dart` and
+                                      Django handwriting workflow
 
----
+  Emotion Recognition                 `elderlycare/my_project/detection_emotion.py`,
+                                      `emotions_training.py`, and Flutter emotion screen
 
-## Thesis and Implementation Alignment
+  Cognitive Activities                `ElderlyCare-Flutter/lib/Patient/`
 
-The academic thesis describes the intended architecture, objectives, modules, datasets, and evaluation of AI CareCompanion. The GitHub repository contains the implemented project components.
+  Object Recognition                  `ElderlyCare-Flutter/lib/Patient/Object recognition.dart`
+                                      and backend
 
-Where the thesis and implementation use different terminology or contain multiple descriptions, this README follows the **actual repository implementation for code-specific details**.
+  Person Recognition                  `ElderlyCare-Flutter/lib/Patient/Recognize person.dart` and
+                                      backend
 
-Important examples:
+  Activity Monitoring                 `ElderlyCare-Flutter/lib/view activity monitoring.dart` and
+                                      Django activity workflows
 
-- The dedicated fall-detection source code uses **YOLOv7-Pose** and loads `yolov7-w6-pose.pt`.
-- The thesis contains references to pose-estimation technologies in different contexts; therefore, this README identifies the concrete YOLOv7-Pose implementation for the dedicated fall-detection component.
-- The thesis contains different handwriting input-size descriptions; no specific input size is asserted here unless required by the verified implementation.
-- The thesis contains more than one set of emotion-recognition result figures; no single set is selected as the definitive project result.
-- The thesis discusses cloud-based family monitoring as a future enhancement rather than an implemented current feature.
+  Doctor Management                   Flutter doctor screens and Django templates/views
 
----
+  Appointments                        Flutter appointment screens and Django backend
+
+  Medication Notifications            Flutter pill/notification screens and Django notification
+                                      workflows
+
+  Tasks and Schedules                 Flutter task/schedule screens and Django backend
+
+  Feedback and Complaints             Flutter feedback/complaint screens and Django
+                                      templates/views
+
+  User Roles                          Flutter role-based navigation and Django role-specific
+                                      templates/views
+  -----------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------
+
+## Project Results and Evaluation
+
+The academic project documentation evaluates the implemented system
+through functional testing and AI-model experiments.
+
+The thesis reports evaluation results for the AI components and
+functional modules. Different sections of the academic document contain
+different experimental metric tables, so this README intentionally does
+not present one metric set as the single definitive result.
+
+For the complete experimental methodology, datasets, model architecture,
+testing procedures, and reported results, refer to the academic thesis
+associated with the project.
+
+------------------------------------------------------------------------
 
 ## Future Enhancements
 
-The project can be extended with additional functionality described in the academic work, including:
+The academic project identifies additional enhancements for future
+versions.
 
-- Cloud-based family/caregiver monitoring
-- Expanded remote monitoring
-- Additional rehabilitation exercises
-- Further AI model improvements
-- Broader healthcare-management capabilities
-- Additional patient-support activities
+One documented future direction is a **cloud-based family
+monitoring/dashboard capability** for broader remote monitoring and
+access.
 
-Future enhancements should be distinguished from the functionality currently implemented in the repository.
+Future work can also improve deployment portability, model management,
+and integration among the existing modules.
 
----
+------------------------------------------------------------------------
 
 ## Repository Notes
 
-### Large Files
+The repository is maintained on the `main` branch.
 
-Some project resources are intentionally not stored in Git because of their size or because they are generated/runtime data.
+The repository intentionally excludes generated and large resources such
+as:
 
-Examples include:
+-   Python cache files
+-   Flutter build artifacts
+-   IDE metadata
+-   Large video files
+-   Dataset directories
+-   Large neural-network weights
+-   `.h5` model artifacts
 
-```text
-yolov7-w6-pose.pt
-fall_dataset/
-my_model/
-Mydata/
-runtime media
-generated build files
-```
+Some portions of the original project contain absolute Windows/PyCharm
+paths from the original development environment. These may need to be
+adapted when deploying the project on another machine.
 
-The source code that references these resources remains in the repository.
+The source code has not been rewritten in this README to hide those
+original implementation details.
 
-### Flutter Generated Files
-
-Generated Flutter/build directories such as:
-
-```text
-.dart_tool/
-build/
-.idea/
-```
-
-are not part of the committed source distribution.
-
-The repository contains the Flutter source under:
-
-```text
-ElderlyCare-Flutter/
-```
-
----
+------------------------------------------------------------------------
 
 ## Academic Project Information
 
-**Project:** AI CareCompanion – A Smart System for Elderly Wellness and Monitoring
+**Project:** AI CareCompanion -- A Smart System for Elderly Wellness and
+Monitoring
 
-**Project Type:** Master's Final Project
+**Application Technologies:**
 
-**Primary Technologies:**
+-   Python
+-   Django
+-   Flutter
+-   Dart
+-   MySQL
+-   PyTorch
+-   Keras/TensorFlow model artifacts
+-   OpenCV
+-   MediaPipe
 
-- Python
-- Django
-- Flutter
-- Dart
-- MySQL
-- Deep Learning
-- Computer Vision
-- YOLOv7-Pose
-- MediaPipe-based activity/pose analysis
+**Primary Areas:**
 
-**Core Areas:**
+-   Elderly wellness and monitoring
+-   Fall detection
+-   Stroke rehabilitation
+-   Malayalam handwriting recognition
+-   Emotion recognition
+-   Cognitive engagement
+-   Motor-skill/activity training
+-   Healthcare management
 
-- Elderly wellness
-- Fall detection
-- Stroke rehabilitation
-- Malayalam handwriting recognition
-- Emotion recognition
-- Cognitive engagement
-- Motor-skill training
-- Healthcare management
-- Medication/reminder support
+------------------------------------------------------------------------
 
----
+## License
 
-## Project Architecture at a Glance
+No project-specific open-source license has been established in the
+current repository. Unless a license is added, the repository should not
+be assumed to grant broad rights to reuse, modify, or redistribute the
+project.
 
-```text
-                         AI CareCompanion
-                                │
-             ┌──────────────────┴──────────────────┐
-             │                                     │
-       Flutter Frontend                     Django Backend
-             │                                     │
-             │                         ┌───────────┴───────────┐
-             │                         │                       │
-             │                    AI / Computer Vision      MySQL
-             │                         │                       │
-             │              ┌──────────┼──────────┐            │
-             │              │          │          │            │
-             │          Fall       Emotion   Handwriting    Application
-             │        Detection   Recognition Recognition      Data
-             │              │          │          │
-             └──────────────┴──────────┴──────────┴────────────┘
-                                │
-                       Elderly Care Platform
-                                │
-              ┌─────────────────┼─────────────────┐
-              │                 │                 │
-           Patient          Caretaker          Doctor/Admin
-```
+------------------------------------------------------------------------
 
----
+## Repository
 
-## Conclusion
-
-AI CareCompanion combines AI-powered monitoring and rehabilitation features with healthcare-management and daily-care functionality in a single elderly-care platform.
-
-By integrating a **Flutter application**, **Python/Django backend**, **MySQL database**, and multiple **AI/computer-vision components**, the project provides a foundation for supporting elderly users across physical safety, rehabilitation, cognitive engagement, emotional awareness, and healthcare management.
-
-The repository represents the complete multi-component implementation of the AI CareCompanion project, including its Flutter frontend, Django application, AI-related Python modules, and supporting model/configuration files.
+GitHub: https://github.com/jamalmujaddidi/AI-CareCompanion
